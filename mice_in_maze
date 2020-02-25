@@ -1,0 +1,66 @@
+#include<iostream>
+#define N 5
+using namespace std;
+
+int maze[N][N]  =  {
+   {1, 0, 0, 0, 0},
+   {1, 1, 0, 1, 0},
+   {0, 1, 1, 1, 0},
+   {0, 0, 0, 1, 0},
+   {1, 1, 1, 1, 1}
+};
+
+int sol[N][N];
+
+
+
+void path(){
+    for (int i = 0; i < N; i++) {
+      for (int j = 0; j < N; j++)
+         cout << sol[i][j] << " ";
+      cout << endl;
+   }
+}
+
+bool validPath(int x, int y) {      //function to check place is inside the maze and have value 1
+   if(x >= 0 && x < N && y >= 0 && y < N && maze[x][y] == 1)
+      return true;
+   return false;
+}
+
+bool solve_maze(int x, int y){
+    if(x==N-1 && y==N-1){
+        sol[x][y]=1;
+        return true;
+    }
+    
+    if(validPath(x, y) == true){
+        sol[x][y]=1;
+        
+        if(solve_maze(x+1, y) == true)
+            return true;
+        if(solve_maze(x, y+1) == true)
+            return true;
+        
+        sol[x][y]=0;
+        return false;
+    }
+    
+    return false;
+}
+
+
+bool solution(){
+    if(solve_maze(0,0)==false){
+        cout<<"no path";
+        return false;
+    }
+    path();
+    return true;
+    
+}
+
+int main(){
+    solution();
+    return 0;
+}
