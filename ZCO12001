@@ -1,0 +1,51 @@
+#include <bits/stdc++.h> 
+//https://www.codechef.com/LRNDSA02/problems/ZCO12001/
+//#define ll long long
+//#typedef ll long long int
+using namespace std;
+
+
+void solve(){
+  int n;
+  int var, ones=0;
+  int depth = -1;
+  int pos=-1;
+  int max_length=-1;
+  int pos2=-1;
+  int last=-1;
+  cin>>n;
+  for(int i=0;i<n;i++){
+    cin>> var;
+
+    if(var == 1){
+      ones++;
+    }
+    else{
+      ones--;
+    }
+    if(ones> depth){
+      depth = ones;
+      pos = i+1;
+    }
+    if(ones == 0){
+
+      if(max_length < i - last ){
+        max_length = i - last;
+        pos2 = (i+2) - max_length;
+
+      }
+      last = i;
+    }
+
+   
+
+  }
+   cout << depth <<" "<< pos <<" " << max_length << " " << pos2<<"\n";
+  
+} 
+
+signed main(){
+
+  solve();
+  return 0;
+}
