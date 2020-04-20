@@ -1,0 +1,79 @@
+#include <bits/stdc++.h> 
+#include<stack>
+//#define ll long long
+//#typedef ll long long int
+using namespace std;
+
+//https://www.codechef.com/LRNDSA02/problems/INPSTFIX
+
+int prec(char c) 
+{ 
+    if(c == '^') 
+    return 3; 
+    else if(c == '*' || c == '/') 
+    return 2; 
+    else if(c == '+' || c == '-') 
+    return 1; 
+    else
+    return -1; 
+} 
+
+
+void solve(){
+  int n;
+  cin>>n;
+  string st, ans;
+  cin>>st;
+  stack<char> str;
+  str.push('F');
+  char s;
+
+
+  for(int i=0;i<n;i++){
+    if(st[i]>= 'A' && st[i]<='Z'){
+      ans+=st[i];
+    }
+    else if(st[i]== '('){
+      str.push('(');
+    }
+    else if(st[i]==')'){
+      while(str.top() != 'F' && str.top() !='('){
+        s = str.top();
+        str.pop();
+        ans+=s;
+      }
+      if(str.top()=='('){
+        s = str.top();
+        str.pop();
+      }
+    }
+    
+    else{
+      while(str.top() != 'F' && prec(st[i]) <= prec(str.top())){
+        s = str.top();
+        str.pop();
+        ans += s;
+      }
+      str.push(st[i]);
+    }
+  }
+
+  while(str.top() != 'F'){
+    s = str.top();
+    str.pop();
+    ans += s;
+  }
+
+  cout<<ans<<endl;
+}
+
+
+
+int main(){
+  int t;
+  cin>>t;
+  while(t--){
+    solve();
+  }
+  return 0;
+}
