@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+//https://www.codechef.com/LTIME83B/problems/SHUFFLE
+#define ll long long 
+
+
+void solve(){
+  int n, k;
+  vector <int> v;
+  int a[200000],b[200000];
+  cin>>n>>k;
+  for(int i=0;i<n;i++){
+            cin>>a[i];
+        }
+        for(int i=0;i<k;i++){
+            for(int j=i;j<n;j+=k){
+                v.push_back(a[j]);
+            }
+            sort(v.begin(),v.end());
+            for(int j=i;j<n;j+=k){
+                a[j]=v[(j-i)/k];
+            }
+            v.clear();
+        }
+        bool flag=true;
+        for(int i=0;i<(n-1);i++){
+            if(a[i]>a[i+1]){
+                flag=false;
+                break;
+            }
+        }
+        if(flag)cout<<"yes"<<'\n';
+        else cout<<"no"<<'\n';
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--){
+     solve();
+    }
+    return 0;
+}
