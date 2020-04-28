@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+#define mod( x )(((x % md ) + md ) % md )
+#define md 998244353
+#define mex 100005
+
+using namespace std;
+typedef long long ll;
+typedef vector<ll> V;
+
+int main()
+{
+	V pow( mex );
+	int t, n, a;
+	V arr;
+
+	pow[ 0 ] = 1;
+	for (int i = 1; i < mex; ++i)
+		pow[ i ] = mod( pow[ i-1] * 2 );
+    int test;
+	cin >> test;
+	while( test-- )
+	{
+		cin >> n;
+
+		arr = V( mex, 0 );
+		for (int i = 0; i < n; ++i)
+		{
+			cin >> a;
+			if( a < mex )
+				arr[ a ]++;
+		}
+
+		ll exp = 1;
+		ll acum = 0;
+		ll ans = 0;
+		ll aux;
+
+		for (int i = 1; i < mex; ++i)
+		{
+			aux = mod( pow[ n-acum-arr[ i ] ] * exp );
+			aux = mod( aux*i );
+			ans = mod( ans + aux );
+
+			acum += arr[ i ];
+			exp = mod(exp * mod( pow[ arr[ i ] ]-1 ) );
+
+			if ( arr[ i ] == 0)
+				break;
+		}
+
+		cout << mod( ans ) << '\n';
+	}
+
+}
