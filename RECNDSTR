@@ -1,0 +1,39 @@
+//https://www.codechef.com/RC122020/problems/RECNDSTR
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+void solve(){
+  string str, left_swipe="", right_swipe  = "";
+  cin>>str;
+  int n = str.length();
+  for(int i =1; i<n; i++){
+    left_swipe += str[i];
+  }
+  left_swipe += str[0];
+
+  right_swipe += str[n-1];
+
+  for(int i= 0; i<n-1; i++){
+    right_swipe += str[i];
+
+  }
+  if(left_swipe.compare(right_swipe))
+    cout<<"NO"<<endl;
+  else
+    cout<<"YES"<<endl;
+  
+
+}
+
+int main() {
+  ll t;
+  
+  cin>>t;
+  for(int i= 0;i<t; i++){
+    solve();
+  }
+
+  
+  return 0;
+}
