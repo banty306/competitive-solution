@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+#include <sstream>
+using namespace std;
+#define ll long long int
+
+
+
+void print_subs(string input,string output) {
+	if(input.length()==0) {
+		cout<<"{"<<output<<" "<<"}"<<endl;
+		return;
+	}
+	print_subs(input.substr(1), output);
+	print_subs(input.substr(1), output + input[0]);
+
+}
+
+
+
+int main() {
+	string str;
+	cout<<"enter the string";
+	cin>>str;
+	string  output="";
+	print_subs(str, output);
+	return 0;
+}
