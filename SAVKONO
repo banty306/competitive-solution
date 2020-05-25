@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+/*
+Author:- codehash2170
+*/
+
+int main(){
+	ios_base::sync_with_stdio(0);
+    cin.tie(0);
+	int t;
+	cin>>t;
+	priority_queue<int>pq;
+	while(t--){
+	  int n,k,x,c=0;
+	    cin>>n>>k;
+	    priority_queue<int>pq;
+	    for(int j=0;j<n;j++)
+	    {
+	    cin>>x;
+	    pq.push(x);
+	    }
+	    while(k>0 && pq.empty()!=true)
+	    {
+	        k=k-pq.top();
+	        if(pq.top()/2!=0)
+	        {
+	        pq.push(pq.top()/2);
+	        }
+	        pq.pop();
+	        c=c+1;
+	    }
+	    if(pq.empty())
+	        cout<<"Evacuate\n";
+	    else
+	        cout<<c<<"\n";
+	    
+	}
+	
+
+ return 0;
+ }
+
