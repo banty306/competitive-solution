@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+#define sp ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL)
+/*
+Author:- codehash2170
+*/
+
+int main(){
+	sp;
+	int n, m;
+	cin>> n>> m;
+	
+         std::unordered_map<string, string> chefstocountry;
+	 std::unordered_map<string, int> chefvote;
+	 std::unordered_map<string, int> countryvote;
+	 
+	 for(int i =0; i<n; i++){
+	 	string chefname, country;
+	 	cin>>chefname>>country;
+	 	chefstocountry[chefname] = country;
+	 }
+	 
+	 for(int j=0; j<m; j++){
+	 	string chefname; 
+	 	cin>>chefname ;
+	 	chefvote[chefname]++;
+	 	countryvote[chefstocountry[chefname]];
+	 }
+	 
+	int res_country = 0;
+	string res_count_name = "zzzzzzzzzzzzzz";
+	
+	for(auto i = countryvote.begin(); i != countryvote.end(); i++ ){
+		if(i->second == res_country){
+			if((i->first).compare(res_count_name) <0){
+				res_count_name = i->first;
+			}
+			
+		}
+		else if(i->second >res_country){
+			res_country = i->second;
+			res_count_name = i->first;
+		}
+			
+		
+	}
+	int res_chef = 0;
+	string res_chef_name = "zzzzzzzzzzzzzz";
+	for(auto i = chefvote.begin(); i != chefvote.end(); i++){
+		if(i->second == res_chef){
+			if((i->first).compare(res_chef_name) <0){
+				res_chef_name = i->first;
+			}
+		}
+		else if(i->second > res_chef){
+			res_chef = i->second;
+			res_chef_name = i->first;
+		}
+	}
+	cout<<res_count_name<<endl;
+	cout<<res_chef_name<<endl;
+	
+
+ return 0;
+ }
